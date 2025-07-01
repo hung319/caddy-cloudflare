@@ -48,8 +48,6 @@ jobs:
           push: true
           cache-from: type=gha
           cache-to: type=gha,mode=max
-          provenance: false
-          sbom: false
           build-args: |
             CADDY_VERSION=${{ github.event.inputs.caddy_version }}
             MODULE_VERSION=${{ github.event.inputs.module_version }}
