@@ -1,9 +1,9 @@
-FROM caddy:builder as builder
+FROM caddy:builder AS builder
 ARG CADDY_VERSION
-ARG ROUTE53_VERSION
+ARG MODULE_VERSION
 
 RUN xcaddy build v${CADDY_VERSION} \
-    --with github.com/caddy-dns/cloudflare@v${ROUTE53_VERSION}
+    --with github.com/caddy-dns/cloudflare@v${MODULE_VERSION}
 
 FROM caddy:latest
 

@@ -4,10 +4,10 @@ on:
   workflow_dispatch:
     inputs:
       caddy_version:
-        description: 'Caddy版本 (如 2.10.1)'
+        description: 'Caddy版本 (如 2.10.0)'
         required: true
       module_version:
-        description: 'Route53模块版本 (如 0.2.1)'
+        description: 'cloudflare模块版本 (如 0.2.1)'
         required: true
   release:
     types: [published]
@@ -47,7 +47,7 @@ jobs:
           cache-to: type=gha,mode=max
           build-args: |
             CADDY_VERSION=${{ github.event.inputs.caddy_version }}
-            ROUTE53_VERSION=${{ github.event.inputs.module_version }}
+            MODULE_VERSION=${{ github.event.inputs.module_version }}
           labels: |
             org.opencontainers.image.source=https://github.com/baowei/caddy-cloudflare
           tags: ghcr.io/baowei/caddy-cloudflare:${{ github.event.inputs.caddy_version }}
