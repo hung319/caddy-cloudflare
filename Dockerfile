@@ -3,7 +3,8 @@ ARG CADDY_VERSION
 ARG MODULE_VERSION
 
 RUN xcaddy build v${CADDY_VERSION} \
-    --with github.com/caddy-dns/cloudflare@v${MODULE_VERSION}
+    --with github.com/caddy-dns/cloudflare@v${MODULE_VERSION} \
+    --with github.com/golevi/cache-handler
 
 FROM caddy:latest
 
