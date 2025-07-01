@@ -1,14 +1,14 @@
 services:
   caddy:
-    image: ghcr.io/baowei/caddy-cloudflare:2.10.0
+    image: ghcr.io/hung319/caddy-cloudflare:latest
     restart: unless-stopped
-    cap_add:
-      - NET_ADMIN
     ports:
-      - "443:443"
+      - 80:80
+      - 443:443
+      - 443:443/udp
     volumes:
-      - caddy_data:/data
-      - caddy_config:/config
+      - ./caddy_data:/data
+      - ./caddy_config:/config
     configs:
       - source: caddy_config
         target: /etc/caddy/Caddyfile
