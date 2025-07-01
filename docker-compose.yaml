@@ -1,13 +1,33 @@
 services:
   caddy:
-    image: caddy:latest
+    image: ghcr.io/baowei/caddy-cloudflare:2.10.0
     restart: unless-stopped
     cap_add:
       - NET_ADMIN
     ports:
-      - "80:80"
       - "443:443"
     volumes:
-      - ./volumes/config:/config
-      - ./volumes/data:/data
-      - ./volumes/etc/caddy:/etc/caddy
+      - caddy_data:/data
+      - caddy_config:/config
+    configs:
+      - source: caddy_config
+        target: /etc/caddy/Caddyfile
+volumes:
+  caddy_data:
+  caddy_config:
+configs:
+  caddy_config:
+    content: |
+      example.com {
+        log {
+          output file /var/log/caddy/app.log {
+            roll_size 20MB
+          }
+        }
+        tls {
+          dns cloudflare {env.CF_API_TOKEN}
+        }
+        handle {
+          reverse_proxy app:80
+        }
+      }
