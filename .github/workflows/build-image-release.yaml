@@ -16,6 +16,9 @@ jobs:
   build:
     name: Build the container image
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
     strategy:
       matrix:
         arch: [amd64, arm64]
