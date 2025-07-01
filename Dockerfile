@@ -2,8 +2,7 @@ FROM caddy:builder AS builder
 ARG CADDY_VERSION
 
 RUN xcaddy build ${CADDY_VERSION} \
-    --with github.com/caddy-dns/cloudflare \
-    --with github.com/golevi/cache-handler
+    --with github.com/caddy-dns/cloudflare
 
 FROM caddy:latest
 
